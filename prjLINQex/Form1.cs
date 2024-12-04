@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,12 +26,15 @@ namespace prjLINQex
             callM2();
             callM3();
             callM4(str => "hello,"+str);
-            int result = IsThree(x => x % 3 == 0);
+
+            int result = MyFirstOrDefault(x =>  x % 3 == 0);
             MessageBox.Show(result.ToString());
         }
+        
+
         public string m1(string str)
         {
-            return "hello,"+str;    
+            return "hello,"+str;
         }
         public void callM1()
         {
@@ -57,8 +61,9 @@ namespace prjLINQex
         }
 
         List<int> numbers = new List<int> { 1, 9, 4, 5, 3 };
+
         //自訂義Dtest 可改為系統內建 Func<int, bool> 
-        public int IsThree(Dtest delegateName)
+        public int MyFirstOrDefault(Dtest delegateName)
         {
             for (int i = 0; i < numbers.Count; i++)
             {
